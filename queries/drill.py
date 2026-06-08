@@ -10,7 +10,15 @@ def q1():
 
     Result: 5 rows. Variables in the SELECT: ?book ?title (in that order).
     """
-    return ""
+    return """
+    PREFIX : <http://example.org/library/>
+    
+    SELECT ?book ?title
+    WHERE {
+        ?book a :Book ;
+              :title ?title .
+    }
+    """
 
 
 def q2():
@@ -20,7 +28,16 @@ def q2():
     Result: 1 row. Variables in the SELECT: ?book ?year.
     Use FILTER (?year > 2010) — strict, not >=.
     """
-    return ""
+    return """
+    PREFIX : <http://example.org/library/>
+    
+    SELECT ?book ?year
+    WHERE {
+        ?book a :Book ;
+              :year ?year .
+        FILTER (?year > 2010)
+    }
+    """
 
 
 def q3():
@@ -30,7 +47,17 @@ def q3():
     Result: 7 rows. Books with multiple authors produce one row per
     author. Variables in the SELECT: ?book ?author_name.
     """
-    return ""
+    return """
+    PREFIX : <http://example.org/library/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    
+    SELECT ?book ?author_name
+    WHERE {
+        ?book a :Book ;
+              :author ?author .
+        ?author rdfs:label ?author_name .
+    }
+    """
 
 
 def q4():
@@ -39,7 +66,17 @@ def q4():
     Result: 5 rows (every book appears; ?topic unbound for books with no
     :topic triple). Variables in the SELECT: ?book ?topic.
     """
-    return ""
+    return """
+    PREFIX : <http://example.org/library/>
+    
+    SELECT ?book ?topic
+    WHERE {
+        ?book a :Book .
+        OPTIONAL {
+            ?book :topic ?topic .
+        }
+    }
+    """
 
 
 def q5():
@@ -49,4 +86,12 @@ def q5():
     Result: TRUE on this fixture. Use ASK with FILTER (?a1 != ?a2) over
     two distinct author bindings.
     """
-    return ""
+    return """
+    PREFIX : <http://example.org/library/>
+    
+    ASK {
+        ?book a :Book ;
+              :author ?a1 , ?a2 .
+        FILTER (?a1 != ?a2)
+    }
+    """
