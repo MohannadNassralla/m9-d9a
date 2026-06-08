@@ -1,0 +1,41 @@
+@prefix :     <http://example.org/library/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Authors
+:hunt    rdfs:label "Andrew Hunt" .
+:thomas  rdfs:label "David Thomas" .
+:hofstadter rdfs:label "Douglas Hofstadter" .
+:knuth   rdfs:label "Donald Knuth" .
+:martin  rdfs:label "Robert C. Martin" .
+:fowler  rdfs:label "Martin Fowler" .
+
+# Books
+:book1 a :Book ;
+    :title "The Pragmatic Programmer" ;
+    :author :hunt , :thomas ;
+    :year 1999 ;
+    :topic "Software Engineering" .
+
+:book2 a :Book ;
+    :title "Godel, Escher, Bach" ;
+    :author :hofstadter ;
+    :year 1979 .
+
+:book3 a :Book ;
+    :title "The Art of Computer Programming, Volume 1" ;
+    :author :knuth ;
+    :year 1968 ;
+    :topic "Algorithms" .
+
+:book4 a :Book ;
+    :title "Clean Code" ;
+    :author :martin ;
+    :year 2008 ;
+    :topic "Software Engineering" .
+
+:book5 a :Book ;
+    :title "Refactoring" ;
+    :author :fowler , :martin ;
+    :year 2018 ;
+    :topic "Software Engineering" .
